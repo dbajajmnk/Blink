@@ -17,62 +17,32 @@ public class LoginDetail {
     @SerializedName("Response")
     @Expose
     private String response;
-    @SerializedName("UserDetails")
+    @SerializedName("Data")
     @Expose
-    private User userDetails;
+    private User data;
 
-    /**
-     *
-     * @return
-     * The code
-     */
     public String getCode() {
         return code;
     }
 
-    /**
-     *
-     * @param code
-     * The Code
-     */
     public void setCode(String code) {
         this.code = code;
     }
 
-    /**
-     *
-     * @return
-     * The response
-     */
     public String getResponse() {
         return response;
     }
 
-    /**
-     *
-     * @param response
-     * The Response
-     */
     public void setResponse(String response) {
         this.response = response;
     }
 
-    /**
-     *
-     * @return
-     * The userDetails
-     */
-    public User getUserDetails() {
-        return userDetails;
+    public User getData() {
+        return data;
     }
 
-    /**
-     *
-     * @param userDetails
-     * The UserDetails
-     */
-    public void setUserDetails(User userDetails) {
-        this.userDetails = userDetails;
+    public void setData(User data) {
+        this.data = data;
     }
 
 }

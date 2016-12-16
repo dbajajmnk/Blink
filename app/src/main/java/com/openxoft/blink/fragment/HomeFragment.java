@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -23,16 +25,23 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.api.Api;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.openxoft.blink.R;
+import com.openxoft.blink.activities.LoginActivity;
+import com.openxoft.blink.activities.MainActivity;
 import com.openxoft.blink.activities.ProviderActivity;
 import com.openxoft.blink.api.ApiParams;
 import com.openxoft.blink.api.ApiService;
 import com.openxoft.blink.model.LocationList;
+import com.openxoft.blink.model.LoginDetail;
 import com.openxoft.blink.model.MainMenuResponse;
 import com.openxoft.blink.model.MenuBaseClass;
+import com.openxoft.blink.model.Service;
 import com.openxoft.blink.model.SignUpData;
+import com.openxoft.blink.model.User;
 import com.openxoft.blink.util.DateUtil;
 import com.openxoft.blink.util.PrefUtil;
+import com.openxoft.blink.util.ProgressUtil;
 import com.openxoft.blink.util.Warning;
 
 import java.util.ArrayList;
@@ -44,6 +53,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
 
 
 /**
@@ -81,6 +91,7 @@ public class HomeFragment extends Fragment implements com.android.datetimepicker
 
     List<MenuBaseClass>hotelSubCategory;
     RadioGroup mPaxType;
+    RadioButton individual,group;
 
     private OnFragmentInteractionListener mListener;
     MainMenuResponse mainMenuResponse=null;
@@ -97,20 +108,10 @@ public class HomeFragment extends Fragment implements com.android.datetimepicker
         mAdult=(Spinner)view.findViewById(R.id.spin_adult);
         mChild=(Spinner)view.findViewById(R.id.spin_child);
         mPaxType=(RadioGroup)view.findViewById(R.id.rg_paxtype);
-        mPaxType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch (i)
-                {
-                    case R.id.rb_individual:
-                        pax_type="individual";
-                        break;
-                    case R.id.rb_group:
-                        pax_type="group";
-                        break;
-                }
-            }
-        });
+
+        individual=(RadioButton)view.findViewById(R.id.rb_individual);
+        group=(RadioButton)view.findViewById(R.id.rb_group);
+
         mInfant=(Spinner)view.findViewById(R.id.spin_infant);
         mDate=(TextView)view.findViewById(R.id.tv_bookingdate);
         mSearch=(Button)view.findViewById(R.id.bt_search);
@@ -119,12 +120,31 @@ public class HomeFragment extends Fragment implements com.android.datetimepicker
             public void onClick(View view) {
                 if(validateInput())
                 {
-                    Log.d(ApiParams.KEY_LOCATION,String.valueOf(object.getSERLOCATIONID()));
+                    if(mPaxType.getCheckedRadioButtonId()==R.id.rb_individual)
+                    {
+                        pax_type=individual.getText().toString();
+                    }
+                    else
+                    {
+                        pax_type=group.getText().toString();
+                    }
+
+
+                 Log.d(ApiParams.KEY_LOCATION,String.valueOf(object.getSERLOCATIONID()));
                     Log.d(ApiParams.KEY_CATEGORY_CODE,String.valueOf(object.getMENUID()));
                     Log.d(ApiParams.KEY_SUB_CATEGORY_CODE,String.valueOf(object.getSUBMENUID()));
-                    Log.d(ApiParams.KEY_NO_ADULT,object.getSUBMENU());
+                    Log.d(ApiParams.KEY_NO_ADULT,no_Of_Adult);
                     Log.d(ApiParams.KEY_PAX_TYPE,pax_type);
                     Log.d(ApiParams.KEY_USER_NAME,PrefUtil.getString(getActivity(),ApiParams.KEY_USER_NAME,ApiParams.KEY_USER_NAME));
+                    Log.d(ApiParams.KEY_USER_PASSWORD,PrefUtil.getString(getActivity(),ApiParams.KEY_USER_PASSWORD,ApiParams.KEY_USER_PASSWORD));
+                    String data=PrefUtil.getString(getActivity(),ApiParams.KEY_USEROBJECT,ApiParams.KEY_USEROBJECT);
+                  LoginDetail loginDetail=new Gson().fromJson(data,LoginDetail.class);
+                    Log.d(ApiParams.KEY_FROM_DATE,mDate.getText().toString());
+                    Log.d(ApiParams.KEY_ACCESS_ID,loginDetail.getData().getULACCESSID());
+                    loginCall();
+                   // searchServices();
+
+
                 }
                 //startActivity(new Intent(getActivity(),ProviderActivity.class));
             }
@@ -164,7 +184,79 @@ public class HomeFragment extends Fragment implements com.android.datetimepicker
         }
         return false;
     }
+private void searchServices()
+{
+    String data=PrefUtil.getString(getActivity(),ApiParams.KEY_USEROBJECT,ApiParams.KEY_USEROBJECT);
+    LoginDetail loginDetail=new Gson().fromJson(data,LoginDetail.class);
 
+    Retrofit retrofit=new Retrofit.Builder().baseUrl(ApiParams.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+    ApiService apiService=retrofit.create(ApiService.class);
+    Call<List<Service>>call=apiService.makeSearch(ApiParams.TAG_SERVICE_DETAIL,
+            PrefUtil.getString(getActivity(),ApiParams.KEY_USER_NAME,ApiParams.KEY_USER_NAME),
+            PrefUtil.getString(getActivity(),ApiParams.KEY_USER_PASSWORD,ApiParams.KEY_USER_PASSWORD),String.valueOf(object.getSERLOCATIONID()),String.valueOf(object.getMENUID()),String.valueOf(object.getSUBMENUID()),mDate.getText().toString(),pax_type,
+            String.valueOf(no_Of_Adult),String.valueOf(no_Of_Child),String.valueOf(0),loginDetail.getData().getULACCESSID());
+    call.enqueue(new Callback<List<Service>>() {
+        @Override
+        public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
+            Log.d("Response",response.body().get(0).getLanguages());
+        }
+
+        @Override
+        public void onFailure(Call<List<Service>> call, Throwable t) {
+
+            Log.d("Failure",t.getMessage());
+
+        }
+    });
+
+}
+   /* Call<List<Service>>makeSearch(@Field(ApiParams.TAG)String tag,
+                                  @Field(ApiParams.KEY_USER_NAME)String userName,
+                                  @Field(ApiParams.KEY_USER_PASSWORD)String userPassword,
+                                  @Field(ApiParams.KEY_LOCATION)String location,
+                                  @Field(ApiParams.KEY_CATEGORY_CODE)String categoryCode,
+                                  @Field(ApiParams.KEY_SUB_CATEGORY_CODE)String subCategoryCode,
+                                  @Field(ApiParams.KEY_FROM_DATE)String fromDate,
+                                  @Field(ApiParams.KEY_PAX_TYPE)String paxType,
+                                  @Field(ApiParams.KEY_NO_ADULT)String no_of_adult,
+                                  @Field(ApiParams.KEY_NO_CHILD)String no_of_child,
+                                  @Field(ApiParams.KEY_NO_INFANT)String no_of_infant,
+                                  @Field(ApiParams.KEY_ACCESS_ID)String access_id
+
+    );*/
+   private void loginCall() {
+
+        ProgressUtil.showProgressDialog(getActivity());
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(ApiParams.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+       String data=PrefUtil.getString(getActivity(),ApiParams.KEY_USEROBJECT,ApiParams.KEY_USEROBJECT);
+       LoginDetail loginDetail=new Gson().fromJson(data,LoginDetail.class);
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<List<Service>>call=apiService.makeSearch(ApiParams.TAG_SERVICE_DETAIL,PrefUtil.getString(getActivity(),ApiParams.KEY_USER_NAME,ApiParams.KEY_USER_NAME),
+                PrefUtil.getString(getActivity(),ApiParams.KEY_USER_PASSWORD,ApiParams.KEY_USER_PASSWORD),
+                String.valueOf(object.getSERLOCATIONID()),String.valueOf(object.getMENUID()),
+                String.valueOf(object.getSUBMENUID()),mDate.getText().toString(),pax_type,String.valueOf(no_Of_Adult),String.valueOf(0),String.valueOf(0),loginDetail.getData().getULACCESSID());
+       call.enqueue(new Callback<List<Service>>() {
+           @Override
+           public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
+
+               Log.d("Response",response.body().get(0).getCurrency());
+
+                    ProgressUtil.hideProgressDialog();
+
+           }
+
+           @Override
+           public void onFailure(Call<List<Service>> call, Throwable t) {
+
+               Log.d("Failure",t.getMessage().toString());
+              ProgressUtil.hideProgressDialog();
+           }
+       });
+
+
+
+    }
 
     private void IntilizeFields() {
         final String adult[]={"Adult","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50"};
@@ -175,13 +267,18 @@ public class HomeFragment extends Fragment implements com.android.datetimepicker
         subcategory=new ArrayList<>();
         hotelSubCategory=new ArrayList<>();
 
-        SignUpData signUpData = new Gson().fromJson(PrefUtil.getString(getContext(), ApiParams.SINGUP_DATA, ApiParams.SINGUP_DATA), SignUpData.class);
+        String data=PrefUtil.getString(getActivity(),ApiParams.SINGUP_DATA,ApiParams.SINGUP_DATA);
+        Log.d("Home Data",data);
+        SignUpData signUpData = new Gson().fromJson(data, SignUpData.class);
+if(signUpData!=null)
+{
+    for(int i=0;i<signUpData.getLocationList().size();i++)
+    {
+        LocationList locationList=signUpData.getLocationList().get(i);
+        locationslist.add(locationList.getCITY());
+    }
+}
 
-        for(int i=0;i<signUpData.getLocationList().size();i++)
-        {
-            LocationList locationList=signUpData.getLocationList().get(i);
-            locationslist.add(locationList.getCITY());
-        }
         mRegionsCity.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,locationslist));
         TextView textView=new TextView(getActivity());
         textView.setText("Select City/ Region");

@@ -93,7 +93,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mLanguage3.setOnClickListener(this);
         mLanguage4.setOnClickListener(this);
 
-        SignUpData signUpData = new Gson().fromJson(PrefUtil.getString(LoginActivity.this, ApiParams.SINGUP_DATA, ApiParams.SINGUP_DATA), SignUpData.class);
+        String data=PrefUtil.getString(getApplicationContext(),ApiParams.SINGUP_DATA,ApiParams.SINGUP_DATA);
+        Log.d("Data",data);
+      SignUpData signUpData = new Gson().fromJson(data, SignUpData.class);
+     Log.d("SignUpData",signUpData.getCountryList().get(0).getCTYNAME());
         if(signUpData!=null) {
             for (int i = 0; i < signUpData.getLanguageList().size(); i++) {
                 if (signUpData.getLanguageList().get(i).getLNGACTIVE()) {
@@ -198,16 +201,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     LoginDetail loginDetail = response.body();
                     if (loginDetail.getResponse().equals("Sucess")) {
                         Gson gson = new GsonBuilder().create();
-                        PrefUtil.putString(LoginActivity.this, ApiParams.KEY_USEROBJECT, ApiParams.KEY_USEROBJECT, gson.toJson(loginDetail.getUserDetails()));
+                        PrefUtil.putString(LoginActivity.this, ApiParams.KEY_USEROBJECT, ApiParams.KEY_USEROBJECT, gson.toJson(response.body()));
                         PrefUtil.putString(LoginActivity.this,ApiParams.KEY_USER_PASSWORD,ApiParams.KEY_USER_PASSWORD,mPassword.getText().toString());
-                        PrefUtil.putString(LoginActivity.this,ApiParams.KEY_USER_NAME,ApiParams.KEY_USER_NAME,mPassword.getText().toString());
+                        PrefUtil.putString(LoginActivity.this,ApiParams.KEY_USER_NAME,ApiParams.KEY_USER_NAME,mUserName.getText().toString());
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
                     } else {
-
+                        Toast.makeText(LoginActivity.this,loginDetail.getResponse(),Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Snackbar.make(null,Warning.NoData,Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(mLanguage1,Warning.NoData,Snackbar.LENGTH_SHORT).show();
                 }
             }
 

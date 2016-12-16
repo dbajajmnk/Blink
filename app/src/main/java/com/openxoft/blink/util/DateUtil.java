@@ -43,7 +43,7 @@ public class DateUtil {
         int year=calendar.get(Calendar.YEAR);
         int month=calendar.get(Calendar.MONTH);
         mDateView.setText(new StringBuilder()
-                .append(DateUtil.pad(month + 1)) .append(" ").append(DateUtil.pad(day)).append(" ").append(DateUtil.pad(year)));
+                .append(DateUtil.pad(month + 1)) .append("/").append(DateUtil.pad(day)).append("/").append(DateUtil.pad(year)));
         mDateView.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
 
     }

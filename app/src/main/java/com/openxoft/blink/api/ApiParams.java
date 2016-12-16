@@ -14,9 +14,9 @@ public class ApiParams {
     public static final String NO ="No" ;
     public static final String YES ="Yes";
    
-    public static final String SINGUP_DATA ="SignUp Data" ;
+    public static final String SINGUP_DATA ="SignUp_Data" ;
     public static final String TAG ="tag" ;
-    public static final String SINGUP_DATA_TAG="singupdata";
+    public static final String SINGUP_DATA_TAG="signupdata";
     public static final String LOGIN_TAG="loginuserdetails";
     public static final String KEY_LANGUAGE ="Language" ;
     public static final  String TAG_MENU_SUBMENU="mnusubmnudetails";
@@ -37,6 +37,5 @@ public class ApiParams {
     public static final String KEY_NO_CHILD="nochild";
 
 
-
-
+    public static final String KEY_NO_INFANT ="noinfant" ;
 }
