@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        android:text="@string/callus"
+        android:id="@+id/bt_call"
+        style="@style/contactbtnstyle" />
+
+    <Button
+        android:text="@string/emailus"
+        style="@style/contactbtnstyle"
+        android:id="@+id/bt_email" />
+
+    <Button
+        android:text="@string/enquirynow"
+        style="@style/contactbtnstyle"
+        android:id="@+id/bt_enquiry" />
+
+    <Button
+        android:text="@string/whatsappus"
+        style="@style/contactbtnstyle"
+        android:id="@+id/bt_whatsapp" />
+</LinearLayout>

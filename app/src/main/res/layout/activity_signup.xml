@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:layout_height="match_parent">
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:id="@+id/spin_logintype"
+        />
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="Login Id"
+        android:id="@+id/et_loginid"
+        style="@style/edt_txt" />
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="First Name"
+        android:id="@+id/et_firstname"
+        style="@style/edt_txt" />
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Middle Name"
+        android:id="@+id/et_middlename" />
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="Last Name"
+        android:id="@+id/et_lastname"
+        style="@style/edt_txt" />
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Company Name *"
+        android:id="@+id/et_companyname" />
+
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="Addrress *"
+        android:id="@+id/et_address"
+        style="@style/edt_txt" />
+
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Address Contd "
+        android:id="@+id/et_addresscont" />
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="City *"
+        android:id="@+id/et_city"
+        style="@style/edt_txt" />
+    <EditText
+        style="@style/edt_txt"
+        android:hint="State"
+        android:id="@+id/et_state" />
+
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:id="@+id/spin_selectcountry" />
+
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="Zip Code *"
+        android:id="@+id/et_zipcode"
+        style="@style/edt_txt" />
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Email Address *"
+        android:id="@+id/et_email" />
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Account Email"
+        android:id="@+id/et_accountemail" />
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="Cell Number"
+        android:id="@+id/et_cellnumber"
+        style="@style/edt_txt" />
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Phone Number *"
+        android:id="@+id/et_phone_number" />
+
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Fax"
+        android:id="@+id/et_fax" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:id="@+id/spin_language"
+        android:hint="Select Language"
+         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Notification Choice"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:text="Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_email" />
+        <CheckBox
+            android:text="Fax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_fax" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:text="All Bookings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_allbookings" />
+        <CheckBox
+            android:text="On RQ Services Only"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_rqservices" />
+    </LinearLayout>
+
+    <CheckBox
+        android:text="Agree with Terms and Conditions"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb_agree" />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/bt_singup"
+        android:text="Sign Up"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout></ScrollView>

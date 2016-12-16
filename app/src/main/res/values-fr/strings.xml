@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">Blink</string>
+    <string name="emailid">Saisissez votre adresse e-mail *</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_about">About Us</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_contact">Contact</string>
+    <string name="opendrawer">Open Drawer</string>
+    <string name="closedrawer">Close Drawer</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
+    <!-- Navigation Drawer menu labels -->
+
+    <string name="nav_photos">Profile</string>
+    <string name="nav_movies">History</string>
+    <string name="nav_notifications">Favourites</string>
+    <string name="nav_settings">My Bookings</string>
+    <string name="nav_about_us">About Us</string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>Profile</item>
+        <item>History</item>
+        <item>Favourites</item>
+        <item>My Bookings</item>
+    </string-array>
+
+    <string name="activity_title_about_us">About Us</string>
+    <string name="activity_title_privacy_policy">Privacy Policy</string>
+    <string name="action_clear_all">Clear All</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_mark_all_read">Mark All as Read</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="changepassword">Change Password</string>
+    <string name="signup">Sign Up</string>
+    <string name="passwordrecovery">Password Recovery</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="selectlanguage">Select Language</string>
+    <string name="login">Login</string>
+    <string name="nav_privacypolicy">Privacy Policy</string>
+    <string name="nav_contact_us">Contact Us</string>
+    <string name="callus">Call Us</string>
+    <string name="emailus">Email Us</string>
+    <string name="enquirynow">Enquiry Now</string>
+    <string name="whatsappus">Whats App Us</string>
+    <string name="yourname">Your Name</string>
+    <string name="nav_enquiry_form">Enquiry Form</string>
+    <string name="group">Group</string>
+    <string name="indivisual">Individual</string>
+    <string name="serviceprovider">Providers</string>
+    <string name="dummy_text">Lorem Ipsum is simply dummy text of the printing and
+        typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="provideguestdetail">Provide Guests Detail</string>
+    <string name="bookingform">Booking Form</string>
+    <string name="hintuserid">Enter User Id *</string>
+    <string name="nav_logout">Logout</string>
+</resources>
+
+

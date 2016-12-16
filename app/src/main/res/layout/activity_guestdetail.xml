@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activities.PrivacyPolicyActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:text="Provide Guest Detail"
+        android:layout_height="wrap_content" />
+
+
+
+
+        <EditText
+
+    style="@style/edt_txt"
+    android:hint="TA Booking"
+    android:id="@+id/et_tabooking"/>
+    <EditText
+
+        style="@style/edt_txt"
+        android:hint="Cell Phone"
+        android:id="@+id/et_cellnumber"/>
+
+
+    <LinearLayout
+   android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Spinner
+            android:id="@+id/spin_title"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner>
+        <EditText
+            style="@style/edt_txt"
+
+            android:hint="First Name*"
+            android:id="@+id/et_firstname"/>
+    </LinearLayout>
+
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Middle Name"
+        android:id="@+id/et_middlename"/>
+
+    <EditText
+        android:hint="Last Name"
+        style="@style/edt_txt"
+        android:id="@+id/et_lastname"/>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+       <LinearLayout
+           android:layout_weight="1"
+           android:layout_width="wrap_content"
+           android:orientation="vertical"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:text="Adult"
+               android:layout_gravity="center_horizontal"
+               android:layout_height="wrap_content" />
+           <EditText
+                android:enabled="false"
+               style="@style/edt_txt"
+               android:id="@+id/et_adult"/>
+
+
+       </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginLeft="2dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Child"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:enabled="false"
+                style="@style/edt_txt"
+                android:id="@+id/et_child"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="2dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Infant"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:enabled="false"
+                style="@style/edt_txt"
+
+                android:id="@+id/et_infant"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/blue"
+        android:layout_marginTop="20dp"
+        android:layout_height="2dp"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:text="Provide Booking  Detail for Pick Up"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+
+        <Spinner
+            android:id="@+id/spin_airportcode"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spin_airlinename"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+
+
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+           android:id="@+id/et_flightno"
+            android:layout_weight="1"
+            android:hint="Flight Number"
+            style="@style/edt_txt"/>
+        <TextView
+
+            style="@style/edt_txt"
+            android:hint="Arrival Time"
+            android:layout_weight="1"
+            android:id="@+id/et_appivaltime"/>
+
+    </LinearLayout>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rb_international"
+            android:layout_weight="1"
+            android:text="Domestic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/rb_domestic"
+            android:layout_weight="1"
+            android:text="International"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/blue"
+        android:layout_marginTop="20dp"
+        android:layout_height="2dp"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:text="Hotel Information for Drop Off"
+        android:layout_height="wrap_content" />
+
+
+
+        <Spinner
+            android:id="@+id/spin_hotel"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Hotel Address"
+
+            android:layout_height="wrap_content" />
+        <EditText
+            android:enabled="false"
+            style="@style/edt_txt"
+
+            android:id="@+id/et_hoteladdress"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+
+
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Zip Code"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:enabled="false"
+            style="@style/edt_txt"
+            android:id="@+id/et_hotelzipcode"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:text="Address if Other Than Above"
+        android:layout_height="wrap_content" />
+
+
+    <EditText
+        android:enabled="false"
+        style="@style/edt_txt"
+        android:gravity="top"
+        android:id="@+id/et_otheraddress"
+        android:layout_height="100dp"
+        android:hint="Other drop-off location Address" />
+
+    <EditText
+        android:enabled="false"
+        style="@style/edt_txt"
+        android:gravity="top"
+        android:id="@+id/et_otherzipcode"
+        android:layout_height="wrap_content"
+        android:hint="Zip Code" />
+
+    <EditText
+        android:enabled="false"
+        style="@style/edt_txt"
+        android:gravity="top"
+        android:id="@+id/et_specialreq"
+        android:layout_height="100dp"
+        android:hint="Special Request if Any ?" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Total"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+
+            style="@style/edt_txt"
+            android:id="@+id/tv_total"/>
+    </LinearLayout>
+<Button
+    android:layout_width="match_parent"
+    android:id="@+id/bt_booknow"
+    android:text="Book Now"
+    android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+</LinearLayout></ScrollView>

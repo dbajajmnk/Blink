@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:layout_height="match_parent">
+    
+
+        <LinearLayout
+            android:id="@+id/languagepanel"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/language1"
+
+                style="@style/language_radio" />
+            <ImageView
+                android:id="@+id/language2"
+                style="@style/language_radio"
+                />
+            <ImageView
+                android:id="@+id/language3"
+                style="@style/language_radio"
+                />
+            <ImageView
+                android:id="@+id/language4"
+                style="@style/language_radio"
+                />
+        </LinearLayout>
+        
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/imageView2"
+        android:scaleType="fitXY" />
+
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="Enter User Name"
+        android:id="@+id/et_name"
+        style="@style/edt_txt" />
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Enter Password"
+        android:id="@+id/et_password"
+        android:inputType="textPassword" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:id="@+id/tv_forgot"
+        android:text="Forgot Password?"
+        android:gravity="end|right"
+        android:layout_height="wrap_content"
+        android:onClick="callForgot" />
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/bt_login"
+        android:text="Login"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="callHome" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:text="Don't Have Account? Sign Up"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:onClick="callSignUp"
+        android:id="@+id/tv_signup" />
+    <TextView
+
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:text="Continue Without Login"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:onClick="callHome"
+        android:id="@+id/tv_continuewithoutlogin" />
+
+</LinearLayout>

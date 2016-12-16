@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:inputType="textPersonName"
+        android:hint="Select Date"
+        android:id="@+id/tv_bookingdate"
+        style="@style/edt_txt" />
+
+    <RadioGroup
+      android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:id="@+id/rg_paxtype">
+        <RadioButton
+            android:layout_width="match_parent"
+            android:text="@string/indivisual"
+            android:layout_weight="1"
+            android:checked="true"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_individual" />
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="@string/group"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_group" />
+
+    </RadioGroup>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spin_adult" />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spin_child" />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spin_infant" />
+</LinearLayout>
+
+
+
+
+</LinearLayout>

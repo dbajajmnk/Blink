@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/openxoft/AndroidApp/Blink/library/build/intermediates/res/merged/androidTest/debug/drawable/done_background_color.xml",
+        "source": "/Users/openxoft/AndroidApp/Blink/library/build/intermediates/bundles/debug/res/drawable/done_background_color.xml"
+    },
+    {
+        "merged": "/Users/openxoft/AndroidApp/Blink/library/build/intermediates/res/merged/androidTest/debug/drawable/done_background_color_dark.xml",
+        "source": "/Users/openxoft/AndroidApp/Blink/library/build/intermediates/bundles/debug/res/drawable/done_background_color_dark.xml"
+    }
+]

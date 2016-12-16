@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/imageView2"
+        android:scaleType="fitXY"
+        android:background="@color/cardview_dark_background" />
+
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="Your Name *"
+        android:id="@+id/et_name"
+        style="@style/edt_txt" />
+
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Your Email *"
+        android:id="@+id/et_email"
+        android:inputType="textEmailAddress" />
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Your Phone Number *"
+        android:id="@+id/et_phone"
+        android:inputType="phone" />
+    <EditText
+        android:inputType="textPersonName"
+        android:hint="Subject *"
+        android:id="@+id/et_subject"
+        style="@style/edt_txt" />
+    <EditText
+        style="@style/edt_txt"
+        android:hint="Message *"
+        android:id="@+id/et_msg"
+        android:singleLine="false"
+        android:layout_weight="0.65"
+        android:inputType="text"
+        android:gravity="top" />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/bt_submit"
+        android:text="Submit"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="callHome" />
+
+</LinearLayout>

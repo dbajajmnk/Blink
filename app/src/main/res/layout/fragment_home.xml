@@ -1,0 +1,44 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.ProfileFragment">
+
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".fragment.HomeFragment">
+
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:id="@+id/locations"
+        android:layout_height="wrap_content"
+        android:completionHint="@string/selectcityregion"
+      ></AutoCompleteTextView>
+
+      <Spinner
+          android:layout_width="match_parent"
+          android:id="@+id/category"
+          android:layout_height="wrap_content"
+          android:visibility="gone"></Spinner>
+    <Spinner
+        android:layout_width="match_parent"
+        android:id="@+id/subcategory"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></Spinner>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+      <include layout="@layout/transport_search"
+        android:id="@+id/hotel_search"/>
+    </RelativeLayout>
+
+    <Button
+        android:text="Search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_search" />
+
+  </LinearLayout>
+</FrameLayout>
