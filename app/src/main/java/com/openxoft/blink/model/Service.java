@@ -2,10 +2,13 @@ package com.openxoft.blink.model;
 
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Service {
+public class Service implements Parcelable{
 
 @SerializedName("code")
 @Expose
@@ -143,7 +146,65 @@ private Integer serviceId0;
 @Expose
 private Integer serviceRequestId;
 
-public String getCode() {
+    protected Service(Parcel in) {
+        code = in.readString();
+        serviceId = in.readString();
+        serviceName = in.readString();
+        fromDate = in.readString();
+        serviceCount = in.readString();
+        priceType = in.readString();
+        maxAdult = in.readString();
+        maxChild = in.readString();
+        maxPax = in.readString();
+        minPax = in.readString();
+        amount = in.readString();
+        status = in.readString();
+        cService = in.readString();
+        orService = in.readString();
+        noadult = in.readString();
+        nochild = in.readString();
+        maxCage = in.readString();
+        minCage = in.readString();
+        pid = in.readString();
+        childprice = in.readString();
+        nameEnglish = in.readString();
+        nameFrench = in.readString();
+        nameItalian = in.readString();
+        nameSpanish = in.readString();
+        descriptionEnglish = in.readString();
+        descriptionFrench = in.readString();
+        descriptionItalian = in.readString();
+        descriptionSpanish = in.readString();
+        remarksEnglish = in.readString();
+        remarksFrench = in.readString();
+        remarksItalian = in.readString();
+        remarksSpanish = in.readString();
+        addOns = in.readString();
+        servicesInPackage = in.readString();
+        pickDetails = in.readString();
+        dropDetails = in.readString();
+        cancellationPolicy = in.readString();
+        imagePath = in.readString();
+        currency = in.readString();
+        languages = in.readString();
+        bookingAllow = in.readString();
+        category = in.readString();
+        subcategory = in.readString();
+    }
+
+    public static final Creator<Service> CREATOR = new Creator<Service>() {
+        @Override
+        public Service createFromParcel(Parcel in) {
+            return new Service(in);
+        }
+
+        @Override
+        public Service[] newArray(int size) {
+            return new Service[size];
+        }
+    };
+
+    public String getCode() {
 return code;
 }
 
@@ -503,4 +564,55 @@ public void setServiceRequestId(Integer serviceRequestId) {
 this.serviceRequestId = serviceRequestId;
 }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(code);
+        parcel.writeString(serviceId);
+        parcel.writeString(serviceName);
+        parcel.writeString(fromDate);
+        parcel.writeString(serviceCount);
+        parcel.writeString(priceType);
+        parcel.writeString(maxAdult);
+        parcel.writeString(maxChild);
+        parcel.writeString(maxPax);
+        parcel.writeString(minPax);
+        parcel.writeString(amount);
+        parcel.writeString(status);
+        parcel.writeString(cService);
+        parcel.writeString(orService);
+        parcel.writeString(noadult);
+        parcel.writeString(nochild);
+        parcel.writeString(maxCage);
+        parcel.writeString(minCage);
+        parcel.writeString(pid);
+        parcel.writeString(childprice);
+        parcel.writeString(nameEnglish);
+        parcel.writeString(nameFrench);
+        parcel.writeString(nameItalian);
+        parcel.writeString(nameSpanish);
+        parcel.writeString(descriptionEnglish);
+        parcel.writeString(descriptionFrench);
+        parcel.writeString(descriptionItalian);
+        parcel.writeString(descriptionSpanish);
+        parcel.writeString(remarksEnglish);
+        parcel.writeString(remarksFrench);
+        parcel.writeString(remarksItalian);
+        parcel.writeString(remarksSpanish);
+        parcel.writeString(addOns);
+        parcel.writeString(servicesInPackage);
+        parcel.writeString(pickDetails);
+        parcel.writeString(dropDetails);
+        parcel.writeString(cancellationPolicy);
+        parcel.writeString(imagePath);
+        parcel.writeString(currency);
+        parcel.writeString(languages);
+        parcel.writeString(bookingAllow);
+        parcel.writeString(category);
+        parcel.writeString(subcategory);
+    }
 }

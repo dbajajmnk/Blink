@@ -76,6 +76,7 @@
     <string name="hintuserid">Enter User Id *</string>
     <string name="nav_logout">Logout</string>
     <string name="selectcityregion">Select City/Region</string>
+    <string name="viewdetail">View Detail</string>
 </resources>
 
 

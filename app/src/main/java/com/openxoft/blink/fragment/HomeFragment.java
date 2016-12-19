@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -240,9 +241,13 @@ private void searchServices()
            @Override
            public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
 
-               Log.d("Response",response.body().get(0).getCurrency());
+
 
                     ProgressUtil.hideProgressDialog();
+               Log.d("ListSize",String.valueOf(response.body().size()));
+               Intent intent=new Intent(getActivity(),ProviderActivity.class);
+               intent.putParcelableArrayListExtra(ApiParams.KEY_PROVIDERS, (ArrayList<? extends Parcelable>) response.body());
+               startActivity(intent);
 
            }
 

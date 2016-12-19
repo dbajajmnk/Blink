@@ -2,12 +2,17 @@ package com.openxoft.blink.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.openxoft.blink.R;
+import com.openxoft.blink.api.ApiParams;
+import com.openxoft.blink.model.Service;
 
 
 public class ProviderDetaiActivity extends BaseActivity {
@@ -30,6 +35,19 @@ public class ProviderDetaiActivity extends BaseActivity {
         mImage=(ImageView)findViewById(R.id.iv_main);
         mGuest=(Button)findViewById(R.id.bt_guestdetail);
         mGuest.setOnClickListener(this);
+
+        Service service=getIntent().getParcelableExtra(ApiParams.KEY_PROVIDERS);
+        if(service!=null)
+        {
+            mTitle.setText(service.getServiceName().toUpperCase());
+            mDescription.setText(Html.fromHtml(service.getDescriptionEnglish()));
+            mPax.setText("Pax:"+"( "+service.getMinPax()+"-"+service.getMaxPax()+" )");
+            mDate.setText("Date:"+service.getFromDate());
+            mPrice.setText("$ "+service.getAmount());
+            Glide.with(ProviderDetaiActivity.this).load(service.getImagePath()+"1.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).into(mImage);
+
+
+        }
 
 
     }
