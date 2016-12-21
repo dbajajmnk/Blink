@@ -11,6 +11,7 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.openxoft.blink.activities.LoginActivity;
 import com.openxoft.blink.activities.SignUpActivity;
+import com.openxoft.blink.api.ApiClient;
 import com.openxoft.blink.api.ApiParams;
 import com.openxoft.blink.api.ApiService;
 import com.openxoft.blink.model.SignUpData;
@@ -69,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void getIntilalData() {
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(ApiParams.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
-        ApiService apiService = retrofit.create(ApiService.class);
+
+        ApiService apiService =  ApiClient.getApiClient();
         Call<SignUpData> call = apiService.getSignUpData(ApiParams.SINGUP_DATA_TAG);
         call.enqueue(new Callback<SignUpData>() {
             @Override

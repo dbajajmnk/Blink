@@ -29,6 +29,7 @@ import com.google.android.gms.common.api.Api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.openxoft.blink.R;
+import com.openxoft.blink.api.ApiClient;
 import com.openxoft.blink.api.ApiParams;
 import com.openxoft.blink.api.ApiService;
 import com.openxoft.blink.api.AppController;
@@ -189,9 +190,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void loginCall(String username, String password) {
 
         ProgressUtil.showProgressDialog(this);
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(ApiParams.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
 
-        ApiService apiService = retrofit.create(ApiService.class);
+
+        ApiService apiService = ApiClient.getApiClient();
         Call<LoginDetail> call = apiService.getUserFromLogin(username, password,ApiParams.LOGIN_TAG);
         call.enqueue(new Callback<LoginDetail>() {
             @Override

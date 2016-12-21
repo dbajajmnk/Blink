@@ -38,6 +38,7 @@ import com.openxoft.blink.model.LoginDetail;
 import com.openxoft.blink.model.MainMenuResponse;
 import com.openxoft.blink.model.MenuBaseClass;
 import com.openxoft.blink.model.Service;
+import com.openxoft.blink.model.ServiceResponse;
 import com.openxoft.blink.model.SignUpData;
 import com.openxoft.blink.model.User;
 import com.openxoft.blink.util.DateUtil;
@@ -185,32 +186,7 @@ public class HomeFragment extends Fragment implements com.android.datetimepicker
         }
         return false;
     }
-private void searchServices()
-{
-    String data=PrefUtil.getString(getActivity(),ApiParams.KEY_USEROBJECT,ApiParams.KEY_USEROBJECT);
-    LoginDetail loginDetail=new Gson().fromJson(data,LoginDetail.class);
 
-    Retrofit retrofit=new Retrofit.Builder().baseUrl(ApiParams.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
-    ApiService apiService=retrofit.create(ApiService.class);
-    Call<List<Service>>call=apiService.makeSearch(ApiParams.TAG_SERVICE_DETAIL,
-            PrefUtil.getString(getActivity(),ApiParams.KEY_USER_NAME,ApiParams.KEY_USER_NAME),
-            PrefUtil.getString(getActivity(),ApiParams.KEY_USER_PASSWORD,ApiParams.KEY_USER_PASSWORD),String.valueOf(object.getSERLOCATIONID()),String.valueOf(object.getMENUID()),String.valueOf(object.getSUBMENUID()),mDate.getText().toString(),pax_type,
-            String.valueOf(no_Of_Adult),String.valueOf(no_Of_Child),String.valueOf(0),loginDetail.getData().getULACCESSID());
-    call.enqueue(new Callback<List<Service>>() {
-        @Override
-        public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
-            Log.d("Response",response.body().get(0).getLanguages());
-        }
-
-        @Override
-        public void onFailure(Call<List<Service>> call, Throwable t) {
-
-            Log.d("Failure",t.getMessage());
-
-        }
-    });
-
-}
    /* Call<List<Service>>makeSearch(@Field(ApiParams.TAG)String tag,
                                   @Field(ApiParams.KEY_USER_NAME)String userName,
                                   @Field(ApiParams.KEY_USER_PASSWORD)String userPassword,
@@ -233,31 +209,41 @@ private void searchServices()
        LoginDetail loginDetail=new Gson().fromJson(data,LoginDetail.class);
 
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<List<Service>>call=apiService.makeSearch(ApiParams.TAG_SERVICE_DETAIL,PrefUtil.getString(getActivity(),ApiParams.KEY_USER_NAME,ApiParams.KEY_USER_NAME),
+        Call<ServiceResponse>call=apiService.makeSearch(ApiParams.TAG_SERVICE_DETAIL,PrefUtil.getString(getActivity(),ApiParams.KEY_USER_NAME,ApiParams.KEY_USER_NAME),
                 PrefUtil.getString(getActivity(),ApiParams.KEY_USER_PASSWORD,ApiParams.KEY_USER_PASSWORD),
                 String.valueOf(object.getSERLOCATIONID()),String.valueOf(object.getMENUID()),
                 String.valueOf(object.getSUBMENUID()),mDate.getText().toString(),pax_type,String.valueOf(no_Of_Adult),String.valueOf(0),String.valueOf(0),loginDetail.getData().getULACCESSID());
-       call.enqueue(new Callback<List<Service>>() {
+
+       call.enqueue(new Callback<ServiceResponse>() {
            @Override
-           public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
+           public void onResponse(Call<ServiceResponse> call, Response<ServiceResponse> response) {
+               ProgressUtil.hideProgressDialog();
+               if(response.body().getCode().equalsIgnoreCase("1"))
+               {
 
 
+                   Log.d("ListSize",String.valueOf(response.body().getData().size()));
+                   Intent intent=new Intent(getActivity(),ProviderActivity.class);
+                   intent.putParcelableArrayListExtra(ApiParams.KEY_PROVIDERS, (ArrayList<? extends Parcelable>) response.body().getData());
+                   startActivity(intent);
 
-                    ProgressUtil.hideProgressDialog();
-               Log.d("ListSize",String.valueOf(response.body().size()));
-               Intent intent=new Intent(getActivity(),ProviderActivity.class);
-               intent.putParcelableArrayListExtra(ApiParams.KEY_PROVIDERS, (ArrayList<? extends Parcelable>) response.body());
-               startActivity(intent);
+               }
+               else
+
+               {
+                   Toast.makeText(getActivity(),response.body().getResponse(),Toast.LENGTH_SHORT).show();
+               }
 
            }
 
            @Override
-           public void onFailure(Call<List<Service>> call, Throwable t) {
-
+           public void onFailure(Call<ServiceResponse> call, Throwable t) {
                Log.d("Failure",t.getMessage().toString());
-              ProgressUtil.hideProgressDialog();
+               ProgressUtil.hideProgressDialog();
+
            }
        });
+
 
 
 
@@ -514,6 +500,7 @@ if(signUpData!=null)
             public void onResponse(Call<MainMenuResponse> call, Response<MainMenuResponse> response) {
                 mainMenuResponse=response.body();
 
+               Log.d("Main Menu REsponse",mainMenuResponse.getHotel().get(0).getMENU());
                 fillMainMenu();
             }
 

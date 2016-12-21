@@ -18,6 +18,7 @@ import com.openxoft.blink.api.ApiParams;
 import com.openxoft.blink.model.Provider;
 import com.openxoft.blink.model.Service;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -46,8 +47,11 @@ public class ProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         LanguageViewHolder languageViewHolder= (LanguageViewHolder) holder;
         service=serviceList.get(position);
         languageViewHolder.name.setText(service.getServiceName().toUpperCase());
-        Glide.with(context).load(service.getImagePath()+"1.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).into(languageViewHolder.imageView);
+        Glide.with(context).load(service.getImagePath()).diskCacheStrategy(DiskCacheStrategy.ALL).into(languageViewHolder.imageView);
         languageViewHolder.pax.setText("Pax: "+"("+service.getMinPax()+"-"+service.getMaxPax()+")");
+
+
+
         languageViewHolder.type.setText("Type: "+"("+service.getPriceType()+")");
         languageViewHolder.price.setText("$"+service.getAmount());
         languageViewHolder.viewdetail.setText(R.string.viewdetail);

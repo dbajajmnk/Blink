@@ -39,4 +39,6 @@ public class ApiParams {
 
     public static final String KEY_NO_INFANT ="noinfant" ;
     public static final String KEY_PROVIDERS ="providers" ;
+    public static final String KEY_SERVICE_CODE="service_code";
+    public static  final String TAG_SERVICE_DATA="servicedata";
 }
