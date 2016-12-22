@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.openxoft.blink.R;
+import com.openxoft.blink.activities.PickAndDropAcitivity;
 import com.openxoft.blink.activities.ProviderDetaiActivity;
 import com.openxoft.blink.api.ApiParams;
 import com.openxoft.blink.model.Provider;
@@ -49,9 +50,6 @@ public class ProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         languageViewHolder.name.setText(service.getServiceName().toUpperCase());
         Glide.with(context).load(service.getImagePath()+"1.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).into(languageViewHolder.imageView);
         languageViewHolder.pax.setText("Pax: "+"("+service.getMinPax()+"-"+service.getMaxPax()+")");
-
-
-
         languageViewHolder.type.setText("Type: "+"("+service.getPriceType()+")");
         languageViewHolder.price.setText("$"+service.getAmount());
         languageViewHolder.viewdetail.setText(R.string.viewdetail);
@@ -94,6 +92,10 @@ public class ProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             price.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Service service=serviceList.get(getLayoutPosition());
+                    Intent intent=new Intent(context, PickAndDropAcitivity.class);
+                    intent.putExtra(ApiParams.KEY_PROVIDERS,service);
+                    context.startActivity(intent);
 
                 }
             });

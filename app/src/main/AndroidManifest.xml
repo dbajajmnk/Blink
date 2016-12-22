@@ -71,12 +71,17 @@
             android:theme="@style/AppTheme2" />
         <activity
             android:name=".activities.EnquiryActivity"
-            android:label="@string/nav_enquiry_form"
+            android:label= "@string/nav_enquiry_form"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2" />
         <activity
             android:name=".activities.ImageGallery"
-
+            android:label="@string/nav_image_gallery"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activities.PickAndDropAcitivity"
+            android:label="@string/nav_pickandDropForm"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2" />
 

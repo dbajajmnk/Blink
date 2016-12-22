@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.datetimepicker.time.RadialPickerLayout;
+
 import java.util.Calendar;
 
 /**
@@ -45,6 +47,21 @@ public class DateUtil {
         mDateView.setText(new StringBuilder()
                 .append(DateUtil.pad(month + 1)) .append("/").append(DateUtil.pad(day)).append("/").append(DateUtil.pad(year)));
         mDateView.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
+
+    }
+    public static  void  resetTime(Context context, TextView mTiming,Calendar calendar) {
+
+        calendar.get(Calendar.MINUTE);
+        Object c = pad3(calendar.get(Calendar.HOUR_OF_DAY));
+
+            mTiming.setText(
+                    new StringBuilder().append(calendar.get(Calendar.HOUR_OF_DAY))
+                            .append(":").append(pad(calendar.get(Calendar.MINUTE))));
+           mTiming.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
+
+
+
+
 
     }
 }

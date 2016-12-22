@@ -16,4 +16,6 @@ public class Warning {
     public static final String NEED_TO_SELECT_SUB_SERVICE ="Sorry! Need to Select Sub Service" ;
     public static final String NEED_TO_SELECT_DATE ="Sorry! Need Enter Date" ;
     public static final String NEED_TO_SELECT_ADULTS ="Sorry! Need to Select No Of Adults" ;
+    public static final String KEY_SELECT_AIRLINE = "Select Airline";
+    public static final String KEY_SELECT_AIRPORT = "Select AirPort";
 }
