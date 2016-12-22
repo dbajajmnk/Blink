@@ -1,10 +1,9 @@
 package com.openxoft.blink.model;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Example {
+public class CheckOutForm {
 
 @SerializedName("Code")
 @Expose
@@ -12,9 +11,9 @@ private String code;
 @SerializedName("Response")
 @Expose
 private String response;
-@SerializedName("CheckOutFormData")
+@SerializedName("Data")
 @Expose
-private List<String> data = null;
+private CheckOutFormData data;
 
 public String getCode() {
 return code;
@@ -32,11 +31,11 @@ public void setResponse(String response) {
 this.response = response;
 }
 
-public List<String> getData() {
+public CheckOutFormData getData() {
 return data;
 }
 
-public void setData(List<String> data) {
+public void setData(CheckOutFormData data) {
 this.data = data;
 }
 

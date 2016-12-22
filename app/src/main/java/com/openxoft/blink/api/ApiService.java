@@ -1,6 +1,7 @@
 package com.openxoft.blink.api;
 
 import com.google.android.gms.common.api.Api;
+import com.openxoft.blink.model.CheckOutForm;
 import com.openxoft.blink.model.GalleryData;
 import com.openxoft.blink.model.LoginDetail;
 import com.openxoft.blink.model.MainMenuResponse;
@@ -48,7 +49,7 @@ public interface ApiService {
                                      );
     @FormUrlEncoded
     @POST(ApiParams.SUB_URL)
-    Call<GalleryData>getServiceData(@Field(ApiParams.TAG)String tag,@Field(ApiParams.KEY_SERVICE_CODE)String serviceCode);
+    Call<CheckOutForm>getServiceData(@Field(ApiParams.TAG)String tag, @Field(ApiParams.KEY_SERVICE_CODE)String serviceCode);
 
 
 }

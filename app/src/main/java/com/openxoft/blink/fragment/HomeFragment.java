@@ -259,7 +259,7 @@ public class HomeFragment extends Fragment implements com.android.datetimepicker
         hotelSubCategory=new ArrayList<>();
 
         String data=PrefUtil.getString(getActivity(),ApiParams.SINGUP_DATA,ApiParams.SINGUP_DATA);
-        Log.d("Home Data",data);
+        Log.d("Home CheckOutFormData",data);
         SignUpData signUpData = new Gson().fromJson(data, SignUpData.class);
 if(signUpData!=null)
 {

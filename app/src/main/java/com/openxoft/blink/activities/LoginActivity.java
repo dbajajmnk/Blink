@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mLanguage4.setOnClickListener(this);
 
         String data=PrefUtil.getString(getApplicationContext(),ApiParams.SINGUP_DATA,ApiParams.SINGUP_DATA);
-        Log.d("Data",data);
+        Log.d("CheckOutFormData",data);
       SignUpData signUpData = new Gson().fromJson(data, SignUpData.class);
      Log.d("SignUpData",signUpData.getCountryList().get(0).getCTYNAME());
         if(signUpData!=null) {

@@ -12,7 +12,7 @@ public class GalleryData {
     @SerializedName("Response")
     @Expose
     private String response;
-    @SerializedName("Data")
+    @SerializedName("CheckOutFormData")
     @Expose
     private List<String> data = null;
 

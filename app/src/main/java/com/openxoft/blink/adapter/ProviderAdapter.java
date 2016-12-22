@@ -25,7 +25,7 @@ import java.util.List;
  * Created by openxoft on 18/11/16.
  */
 
-public class ProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener{
+public class ProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     List<Service>serviceList;
@@ -47,7 +47,7 @@ public class ProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         LanguageViewHolder languageViewHolder= (LanguageViewHolder) holder;
         service=serviceList.get(position);
         languageViewHolder.name.setText(service.getServiceName().toUpperCase());
-        Glide.with(context).load(service.getImagePath()).diskCacheStrategy(DiskCacheStrategy.ALL).into(languageViewHolder.imageView);
+        Glide.with(context).load(service.getImagePath()+"1.jpg").diskCacheStrategy(DiskCacheStrategy.ALL).into(languageViewHolder.imageView);
         languageViewHolder.pax.setText("Pax: "+"("+service.getMinPax()+"-"+service.getMaxPax()+")");
 
 
@@ -55,8 +55,6 @@ public class ProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         languageViewHolder.type.setText("Type: "+"("+service.getPriceType()+")");
         languageViewHolder.price.setText("$"+service.getAmount());
         languageViewHolder.viewdetail.setText(R.string.viewdetail);
-        languageViewHolder.price.setOnClickListener(this);
-        languageViewHolder.viewdetail.setOnClickListener(this);
 
 
     }
@@ -68,39 +66,38 @@ public class ProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return serviceList.size();
     }
 
-    @Override
-    public void onClick(View view) {
-        Intent intent=null;
 
-        switch (view.getId())
-        {
-            case R.id.tv_detail:
-                intent=new Intent(context, ProviderDetaiActivity.class);
-                intent.putExtra(ApiParams.KEY_PROVIDERS,service);
-                break;
-            case R.id.tv_price:
 
-                break;
-        }
-        if(intent!=null)
-        {
-            context.startActivity(intent);
-        }
-
-    }
-
-    static public class LanguageViewHolder extends RecyclerView.ViewHolder {
+     public class LanguageViewHolder extends RecyclerView.ViewHolder {
 
         TextView name,price,pax,type,viewdetail;
         ImageView imageView;
         public LanguageViewHolder(View itemView) {
             super(itemView);
+
+
             name=(TextView)itemView.findViewById(R.id.tv_name);
             price=(TextView)itemView.findViewById(R.id.tv_price);
             pax=(TextView)itemView.findViewById(R.id.tv_pax);
             type=(TextView)itemView.findViewById(R.id.tv_type);
             viewdetail=(TextView)itemView.findViewById(R.id.tv_detail);
             imageView=(ImageView)itemView.findViewById(R.id.iv_serviceicon);
+            viewdetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Service service=serviceList.get(getLayoutPosition());
+                    Intent intent=new Intent(context, ProviderDetaiActivity.class);
+                    intent.putExtra(ApiParams.KEY_PROVIDERS,service);
+                    context.startActivity(intent);
+                }
+            });
+            price.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
         }
     }
 }

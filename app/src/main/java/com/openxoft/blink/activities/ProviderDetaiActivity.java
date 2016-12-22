@@ -19,6 +19,8 @@ import com.openxoft.blink.adapter.ImageAdapter;
 import com.openxoft.blink.api.ApiClient;
 import com.openxoft.blink.api.ApiParams;
 import com.openxoft.blink.api.ApiService;
+import com.openxoft.blink.listeners.CustomItemClickListener;
+import com.openxoft.blink.model.CheckOutForm;
 import com.openxoft.blink.model.GalleryData;
 import com.openxoft.blink.model.Service;
 import com.openxoft.blink.util.ProgressUtil;
@@ -40,7 +42,7 @@ public class ProviderDetaiActivity extends BaseActivity {
     Button mGuest;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager mLayoutManager;
-    List<String> mImages;
+  ArrayList<String> mImages;
     ImageAdapter mImageAdapter;
     Service service;
 
@@ -72,6 +74,14 @@ public class ProviderDetaiActivity extends BaseActivity {
         mImages=new ArrayList<>();
         mImageAdapter=new ImageAdapter(this,mImages);
         recyclerView.setAdapter(mImageAdapter);
+        recyclerView.addOnItemTouchListener(new CustomItemClickListener(this, new CustomItemClickListener.OnItemSelectedListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent=new Intent(ProviderDetaiActivity.this,ImageGallery.class);
+                intent.putStringArrayListExtra(ApiParams.KEY_GALLERY_IMAGES,mImages);
+                startActivity(intent);
+            }
+        }));
         mGuest.setOnClickListener(this);
 
         service=getIntent().getParcelableExtra(ApiParams.KEY_PROVIDERS);
@@ -93,25 +103,30 @@ public class ProviderDetaiActivity extends BaseActivity {
         ProgressUtil.showProgressDialog(this);
         ApiService apiService= ApiClient.getApiClient();
         Log.d("Params",service.getServiceId()+"and TAG"+ApiParams.TAG_SERVICE_DATA);
-        Call<GalleryData> call=apiService.getServiceData(ApiParams.TAG_SERVICE_DATA,service.getServiceId());
-        call.enqueue(new Callback<GalleryData>() {
+        Call<CheckOutForm> call=apiService.getServiceData(ApiParams.TAG_SERVICE_DATA,service.getServiceId());
+        call.enqueue(new Callback<CheckOutForm>() {
             @Override
-            public void onResponse(Call<GalleryData> call, Response<GalleryData> response) {
+            public void onResponse(Call<CheckOutForm> call, Response<CheckOutForm> response) {
                 ProgressUtil.hideProgressDialog();
-                for(int i=0;i<response.body().getData().size();i++)
+                if(response.body().getCode().equalsIgnoreCase("1"))
                 {
-                    mImages.add(service.getImagePath()+response.body().getData().get(i)); Log.d("REsponse",response.body().getData().get(i));
+                    for(int i=0;i<response.body().getData().getImageGalleryData().size();i++)
+                    {
+                        mImages.add(service.getImagePath()+response.body().getData().getImageGalleryData().get(i));
+                        Log.d("REsponse",response.body().getData().getImageGalleryData().get(i));
+                    }
+                    mImageAdapter.notifyDataSetChanged();
                 }
-                mImageAdapter.notifyDataSetChanged();
 
             }
 
             @Override
-            public void onFailure(Call<GalleryData> call, Throwable t) {
+            public void onFailure(Call<CheckOutForm> call, Throwable t) {
                 ProgressUtil.hideProgressDialog();
                 Log.d("Failure",t.getMessage().toString());
             }
         });
+
 
     }
 

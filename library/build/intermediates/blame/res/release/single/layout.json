@@ -4,12 +4,12 @@
         "source": "/Users/openxoft/AndroidApp/Blink/library/res/layout/time_header_label.xml"
     },
     {
-        "merged": "/Users/openxoft/AndroidApp/Blink/library/build/intermediates/res/merged/release/layout/date_picker_dialog.xml",
-        "source": "/Users/openxoft/AndroidApp/Blink/library/res/layout/date_picker_dialog.xml"
-    },
-    {
         "merged": "/Users/openxoft/AndroidApp/Blink/library/build/intermediates/res/merged/release/layout/date_picker_header_view.xml",
         "source": "/Users/openxoft/AndroidApp/Blink/library/res/layout/date_picker_header_view.xml"
+    },
+    {
+        "merged": "/Users/openxoft/AndroidApp/Blink/library/build/intermediates/res/merged/release/layout/date_picker_dialog.xml",
+        "source": "/Users/openxoft/AndroidApp/Blink/library/res/layout/date_picker_dialog.xml"
     },
     {
         "merged": "/Users/openxoft/AndroidApp/Blink/library/build/intermediates/res/merged/release/layout/year_label_text_view.xml",
